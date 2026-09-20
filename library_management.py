@@ -31,7 +31,7 @@ class library:
     @greet
     def welcome(self):
         self.name = input("Enter your name: ").strip()
-        # Automatically register them as a member if they aren't already
+  
         if self.name not in self.members:
             self.members[self.name] = []
             self.save_members()
@@ -50,7 +50,7 @@ class library:
             print(f"\"{bc}\" is already in the library.")
         else:
             self.books.append(bc)
-            print(f"\"{self.books[-1]}\" IS ADDED") # Fixed index bug using [-1]
+            print(f"\"{self.books[-1]}\" IS ADDED") 
             with open("Books.json", 'w') as file:
                 json.dump(self.books, file, indent=4)
 
@@ -68,12 +68,12 @@ class library:
         br = input("Enter the book you want to borrow: ")
         try:
             r = self.books.index(br)
-            # Remove from library stock
+            
             self.books.pop(r)
             with open("Books.json", 'w') as file:
                 json.dump(self.books, file, indent=4)
             
-            # Add to the current logged-in member's borrowed list
+            
             self.members[self.name].append(br)
             self.save_members()
             
